@@ -4,6 +4,10 @@ extern crate test;
 extern crate chrono;
 extern crate datetime;
 extern crate iso8601;
+extern crate nom;
+extern crate regex;
+
+mod datetime_regex_pure;
 
 static DATESTRING:&'static str = "2014-11-28T12:00:09Z";
 
@@ -21,6 +25,19 @@ mod chrono_bench{
     }
 }
 
+#[cfg(test)]
+mod datetime_regex_pure_bench{
+
+    use super::test::Bencher;
+    use datetime_regex_pure::*;
+
+    #[bench]
+    fn parse_iso8601(b: &mut Bencher) {
+        b.iter(||{
+            parse_iso_8601(super::DATESTRING);
+        });
+    }
+}
 
 #[cfg(test)]
 mod datetime_bench{
@@ -31,7 +48,7 @@ mod datetime_bench{
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
         b.iter(||{
-            LocalDate::parse(super::DATESTRING);
+            LocalDateTime::parse(super::DATESTRING);
         });
     }
 }
@@ -49,3 +66,4 @@ mod nomdate_bench{
         });
     }
 }
+
