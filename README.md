@@ -2,10 +2,12 @@
 
  This Benchmark Suite compares:
  
- * `chrono`
- * `datetime`
- * `datetime_regex_pure` (extracted, no validation)
- * [nom](https://fnordig.de/2015/07/16/omnomnom-parsing-iso8601-dates-using-nom/) (no validation, TODO)
+ * [chrono](https://crates.io/crates/chrono)
+ * [datetime](https://crates.io/crates/datetime) (uses regex)
+ * `datetime_regex_pure` (extracted from [datetime](https://crates.io/crates/datetime), but no validation)
+ * [nom](https://fnordig.de/2015/07/16/omnomnom-parsing-iso8601-dates-using-nom/) (no validation yet, TODO)
+
+even though the nom bench does not validate, the differences are already significant
 
 ```bash
      Running target/release/dateparser_benchmarks-71747040d4b5a03b
@@ -22,3 +24,4 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 4 measured
 ## TODO
 
 * [ ] properly extract `DateTime` of the nom version
+
