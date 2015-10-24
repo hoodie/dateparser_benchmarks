@@ -15,7 +15,7 @@ even though the nom bench does not validate, the differences are already signifi
 running 4 tests
 test chrono_bench::parse_iso8601              ... bench:         819 ns/iter (+/- 7)
 test datetime_bench::parse_iso8601            ... bench:      63,174 ns/iter (+/- 2,067)
-test datetime_regex_pure_bench::parse_iso8601 ... bench:       1,902 ns/iter (+/- 82)
+test datetime_regex_pure_bench::parse_iso8601 ... bench:       1,700 ns/iter (+/- 71)
 test nomdate_bench::parse_iso8601             ... bench:         265 ns/iter (+/- 121)
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 4 measured
