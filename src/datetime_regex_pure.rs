@@ -1,7 +1,6 @@
 use regex::Regex;
 
 pub struct PureRegexParser {
-    split: Regex,
     week: Regex,
     ymd: Regex,
     exp: Regex,
@@ -10,17 +9,16 @@ pub struct PureRegexParser {
 impl PureRegexParser {
     pub fn new() -> Self {
         PureRegexParser {
-            split: Regex::new(r"^([^T]*)T?(.*)$").unwrap(),
             week: Regex::new(r##"(?x)^
                 (\d{4})   # year
                 -W(\d{2}) # number of week
                 -(\d{1})  # day in week (1..7)
-                $"##).unwrap(),
+                $"##).expect("Regex broken"),
             ymd: Regex::new(r##"(?x)^
                 (\d{4})   # year
                 -?(\d{2}) # month
                 -?(\d{2}) # day
-                $"##).unwrap(),
+                $"##).expect("Regex broken"),
             exp: Regex::new(r##"(?x) ^
                 (\d{2}) :?     # hour
                 (\d{2})? :?    # minute
@@ -43,20 +41,19 @@ impl PureRegexParser {
     /// Splits DateString, TimeString
     ///
     /// for further parsing by `parse_iso_8601_date` and `parse_iso_8601_time`.
-    pub fn split_iso_8601(&self, string: &str) -> Option<(String, String)>
+    pub fn split_iso_8601<'a>(&self, string: &'a str) -> (&'a str, &'a str)
     {
-        if let Some(caps) = self.split.captures(&string) {
-            if caps.len() > 1 {
-                return Some((caps.at(1).unwrap().into(), caps.at(2).unwrap().into()));
-            }
+        if let Some(offset) = string.find('T') {
+            (&string[..offset], &string[offset + 1 ..])
+        } else {
+            (&string[..], "")
         }
-        None
     }
 
     /// Parses a ISO 8601 strin into LocalDateTime Object.
     pub fn parse_iso_8601(&self, string: &str) -> ((u32,u32,u32),(i8,i8,i8,i32))
     {
-        let (date_string, time_string) = self.split_iso_8601(string).unwrap();
+        let (date_string, time_string) = self.split_iso_8601(string);
         match (self.parse_iso_8601_date(&date_string), self.parse_iso_8601_time(&time_string)) {
             (Some((a,b,c)), Some((d,e,f,g))) => ((a,b,c),(d,e,f,g)),
             _ => panic!()
@@ -96,7 +93,7 @@ impl PureRegexParser {
                        caps.at(2).unwrap_or("00").parse::<i8>().unwrap(), // MM
                        caps.at(3).unwrap_or("00").parse::<i8>().unwrap(), // SS
                        caps.at(4).unwrap_or("000").parse::<i32>().unwrap(), // MS
-                       caps.at(6).unwrap_or("+00").trim_matches('+').parse::<i8>().unwrap(), // ZH
+                       caps.at(6).unwrap_or("+00").trim_left_matches('+').parse::<i8>().unwrap(), // ZH
                        caps.at(7).unwrap_or("00").parse::<i8>().unwrap(), // ZM
                        caps.at(5).unwrap_or("_"), // "Z"
                       );
