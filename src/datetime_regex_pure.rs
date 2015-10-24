@@ -45,8 +45,7 @@ impl PureRegexParser {
     /// for further parsing by `parse_iso_8601_date` and `parse_iso_8601_time`.
     pub fn split_iso_8601(&self, string: &str) -> Option<(String, String)>
     {
-        if self.split.is_match(&string) {
-            let caps = self.split.captures(&string).unwrap();
+        if let Some(caps) = self.split.captures(&string) {
             if caps.len() > 1 {
                 return Some((caps.at(1).unwrap().into(), caps.at(2).unwrap().into()));
             }
@@ -67,21 +66,17 @@ impl PureRegexParser {
     /// Parses ISO 8601 Date strings into LocalDate Object.
     pub fn parse_iso_8601_date(&self, string: &str) -> Option<(u32, u32, u32)>
     {
-        if self.ymd.is_match(&string) {
-            self.ymd.captures(string).map(|caps|
-                (caps.at(1).unwrap().parse().unwrap(), // year
-                 caps.at(2).unwrap().parse().unwrap(), // month
-                 caps.at(3).unwrap().parse().unwrap(), // day
-                )
-            )
+        if let Some(caps) = self.ymd.captures(&string) {
+            Some((caps.at(1).unwrap().parse().unwrap(), // year
+                  caps.at(2).unwrap().parse().unwrap(), // month
+                  caps.at(3).unwrap().parse().unwrap(), // day
+                ))
         }
-        else if self.week.is_match(&string) {
-            self.week.captures(string).map(|caps|
-                (caps.at(1).unwrap().parse().unwrap(), // year
+        else if let Some(caps) = self.week.captures(&string) {
+            Some((caps.at(1).unwrap().parse().unwrap(), // year
                  caps.at(2).unwrap().parse().unwrap(), // week
                  caps.at(3).unwrap().parse().unwrap()  // weekday
-                )
-            )
+                ))
         }
         else { None }
     }
@@ -96,19 +91,19 @@ impl PureRegexParser {
 
     fn parse_iso_8601_tuple<'a>(&self, string: &'a str) -> Option<(i8,i8,i8,i32,i8,i8,&'a str)>
     {
-        if self.exp.is_match(&string) {
-            let tup = self.exp.captures(string).map(|caps|
-                    (caps.at(1).unwrap_or("00").parse::<i8>().unwrap(), // HH
-                     caps.at(2).unwrap_or("00").parse::<i8>().unwrap(), // MM
-                     caps.at(3).unwrap_or("00").parse::<i8>().unwrap(), // SS
-                     caps.at(4).unwrap_or("000").parse::<i32>().unwrap(), // MS
-                     caps.at(6).unwrap_or("+00").trim_matches('+').parse::<i8>().unwrap(), // ZH
-                     caps.at(7).unwrap_or("00").parse::<i8>().unwrap(), // ZM
-                     caps.at(5).unwrap_or("_"), // "Z"
-                    )
-            ).unwrap();
-            if tup.3 > 0 && &format!("{}", tup.3).len() %3 != 0{
-                println!("{}", tup.3); return None}
+        if let Some(caps) = self.exp.captures(&string) {
+            let tup = (caps.at(1).unwrap_or("00").parse::<i8>().unwrap(), // HH
+                       caps.at(2).unwrap_or("00").parse::<i8>().unwrap(), // MM
+                       caps.at(3).unwrap_or("00").parse::<i8>().unwrap(), // SS
+                       caps.at(4).unwrap_or("000").parse::<i32>().unwrap(), // MS
+                       caps.at(6).unwrap_or("+00").trim_matches('+').parse::<i8>().unwrap(), // ZH
+                       caps.at(7).unwrap_or("00").parse::<i8>().unwrap(), // ZM
+                       caps.at(5).unwrap_or("_"), // "Z"
+                      );
+            if tup.3 > 0 && caps.at(4).map(|ms| ms.len()).unwrap_or(0) % 3 != 0 {
+                // println!("{}", tup.3);
+                return None
+            }
             return Some(tup);
         }
         None
