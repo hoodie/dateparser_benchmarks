@@ -13,10 +13,10 @@ even though the nom bench does not validate, the differences are already signifi
      Running target/release/dateparser_benchmarks-71747040d4b5a03b
 
 running 4 tests
-test chrono_bench::parse_iso8601              ... bench:         819 ns/iter (+/- 7)
-test datetime_bench::parse_iso8601            ... bench:      63,174 ns/iter (+/- 2,067)
-test datetime_regex_pure_bench::parse_iso8601 ... bench:       1,700 ns/iter (+/- 71)
-test nomdate_bench::parse_iso8601             ... bench:         265 ns/iter (+/- 121)
+test chrono_bench::parse_iso8601              ... bench:         687 ns/iter (+/- 111)
+test datetime_bench::parse_iso8601            ... bench:      51,765 ns/iter (+/- 3,817)
+test datetime_regex_pure_bench::parse_iso8601 ... bench:       1,495 ns/iter (+/- 142)
+test nomdate_bench::parse_iso8601             ... bench:         212 ns/iter (+/- 7)
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 4 measured
 ```
