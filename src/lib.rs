@@ -9,7 +9,7 @@ extern crate regex;
 
 mod datetime_regex_pure;
 
-static DATESTRING:&'static str = "2014-11-28T12:00:09Z";
+static DATESTRING: &'static str = "2014-11-28T12:00:09Z";
 
 #[cfg(test)]
 mod chrono_bench{
@@ -29,12 +29,13 @@ mod chrono_bench{
 mod datetime_regex_pure_bench{
 
     use super::test::Bencher;
-    use datetime_regex_pure::*;
+    use datetime_regex_pure::PureRegexParser;
 
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
+        let parser = PureRegexParser::new();
         b.iter(||{
-            parse_iso_8601(super::DATESTRING);
+            parser.parse_iso_8601(super::DATESTRING);
         });
     }
 }
