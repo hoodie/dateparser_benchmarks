@@ -20,18 +20,19 @@ impl PureRegexParser {
                 -?(\d{2}) # day
                 $"##).expect("Regex broken"),
             exp: Regex::new(r##"(?x) ^
-                (\d{2})          # hour
-                (?: : (\d{2}))?  # minute
+                (\d{2}) :?     # hour
+                (\d{2})? :?    # minute
 
                 (?:
-                    : (\d{2})           # second
-                    (?: \. (\d{1,9}))?  # millisecond
+                    (\d{2})         # second
+                    \.?
+                    ((?:\d{1,9}))?  # millisecond
                 )?
 
-                (?:                  # time zone offset:
-                    (Z) |            # or just Z for UTC
-                    ([+-]\d\d)?      # hour and
-                    (?: : (\d\d))?   # minute,
+                (?:                 # time zone offset:
+                    (Z) |           # or just Z for UTC
+                    ([+-]\d\d)? :?  # hour and
+                    (\d\d)?         # minute,
                 )?
             $"##).expect("Regex broken"),
         }
