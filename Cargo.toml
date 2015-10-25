@@ -4,9 +4,10 @@ version = "0.1.0"
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 
 [dependencies]
-datetime = "0.4"
 chrono = "0.2"
 nom = "0.4"
 regex = "0.1"
+#datetime = "0.4"
+datetime = {git = "https://github.com/ogham/rust-datetime/"}
 
 iso8601 = { git = "https://github.com/badboy/iso8601.git" }

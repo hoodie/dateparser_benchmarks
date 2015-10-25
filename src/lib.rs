@@ -1,4 +1,5 @@
 #![feature(test)]
+#![allow(unused_must_use)]
 extern crate test;
 
 extern crate chrono;
@@ -51,12 +52,13 @@ mod datetime_regex_pure_bench{
 mod datetime_bench{
 
     use super::test::Bencher;
+    use std::str::FromStr;
     use datetime::local::*;
 
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
         b.iter(||{
-            LocalDateTime::parse(super::DATESTRING);
+            LocalDateTime::from_str(super::DATESTRING);
         });
     }
 }
@@ -75,3 +77,31 @@ mod nomdate_bench{
     }
 }
 
+
+#[cfg(test)]
+mod completeness{
+    use chrono::*;
+    use std::str::FromStr;
+    use datetime::local::LocalDateTime;
+    use iso8601::easy::datetime as nomdatetime;
+
+    #[test]
+    fn iso_week_date() {
+
+        let tests = [
+            "2015-10-24T16:30:48+00:00",
+            "2015-10-24T16:30:48Z",
+            "20151024T163048Z",
+            "2015-W43T16:30:48Z",
+            "2015-W43-6T16:30:48Z",
+            "2015-297T16:30:48Z",
+        ];
+
+        for date in tests.iter(){
+            let parsed_chrono = date.parse::<DateTime<UTC>>();
+            let parsed_datetime = LocalDateTime::from_str(super::DATESTRING);
+            let parsed_nom = nomdatetime(super::DATESTRING.as_bytes());
+            println!("{}\n -> chrono:   {:?}\n -> datetime: {:?}\n -> nom:      {:?}\n", date, parsed_chrono, parsed_datetime, parsed_nom);
+        }
+    }
+}
