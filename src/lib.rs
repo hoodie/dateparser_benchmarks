@@ -32,7 +32,14 @@ mod datetime_regex_pure_bench{
     use datetime_regex_pure::PureRegexParser;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn create_regex(b: &mut Bencher) {
+        b.iter(||{
+            PureRegexParser::new();
+        });
+    }
+
+    #[bench]
+    fn apply_regex(b: &mut Bencher) {
         let parser = PureRegexParser::new();
         b.iter(||{
             parser.parse_iso_8601(super::DATESTRING);
