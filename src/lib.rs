@@ -1,5 +1,6 @@
 #![feature(test)]
 #![allow(unused_must_use)]
+#![allow(dead_code)]
 extern crate test;
 
 extern crate chrono;
@@ -80,6 +81,7 @@ mod nomdate_bench{
 
 #[cfg(test)]
 mod completeness{
+
     use chrono::*;
     use std::str::FromStr;
     use datetime::local::LocalDateTime;
@@ -99,9 +101,10 @@ mod completeness{
 
         for date in tests.iter(){
             let parsed_chrono = date.parse::<DateTime<UTC>>();
-            let parsed_datetime = LocalDateTime::from_str(super::DATESTRING);
-            let parsed_nom = nomdatetime(super::DATESTRING.as_bytes());
+            let parsed_datetime = LocalDateTime::from_str(date);
+            let parsed_nom = nomdatetime(date.as_bytes());
             println!("{}\n -> chrono:   {:?}\n -> datetime: {:?}\n -> nom:      {:?}\n", date, parsed_chrono, parsed_datetime, parsed_nom);
         }
     }
+
 }
