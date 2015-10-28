@@ -15,14 +15,14 @@ even though the nom bench does not validate, the differences are already signifi
 $ cargo bench
      Running target/release/dateparser_benchmarks-71747040d4b5a03b
 
-running 6 tests
+running 5 tests
 test completeness::iso_week_date ... ignored
-test chrono_bench::parse_iso8601             ... bench:         703 ns/iter (+/- 10)
-test datetime_bench::parse_iso8601           ... bench:      52,129 ns/iter (+/- 3,308)
-test datetime_regex_pure_bench::apply_regex  ... bench:       1,484 ns/iter (+/- 137)
-test datetime_regex_pure_bench::create_regex ... bench:      41,473 ns/iter (+/- 1,217)
-test nomdate_bench::parse_iso8601            ... bench:         403 ns/iter (+/- 17)
-test result: ok. 0 passed; 0 failed; 1 ignored; 5 measured
+test chrono_bench::parse_iso8601            ... bench:         705 ns/iter (+/- 11)
+test datetime_bench::parse_iso8601          ... bench:         438 ns/iter (+/- 221)
+test datetime_regex_pure_bench::apply_regex ... bench:       1,518 ns/iter (+/- 384)
+test nomdate_bench::parse_iso8601           ... bench:         409 ns/iter (+/- 30)
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 4 measured
 ```
 
 ## Completeness test of each implementation

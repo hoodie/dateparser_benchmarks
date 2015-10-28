@@ -29,16 +29,15 @@ mod chrono_bench{
 
 #[cfg(test)]
 mod datetime_regex_pure_bench{
-
     use super::test::Bencher;
     use datetime_regex_pure::PureRegexParser;
 
-    #[bench]
-    fn create_regex(b: &mut Bencher) {
-        b.iter(||{
-            PureRegexParser::new();
-        });
-    }
+    //#[bench]
+    //fn create_regex(b: &mut Bencher) {
+    //    b.iter(||{
+    //        PureRegexParser::new();
+    //    });
+    //}
 
     #[bench]
     fn apply_regex(b: &mut Bencher) {
