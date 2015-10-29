@@ -25,6 +25,8 @@ test nomdate_bench::parse_iso8601            ... bench:         403 ns/iter (+/-
 test result: ok. 0 passed; 0 failed; 1 ignored; 5 measured
 ```
 
+Check out [this branch](https://github.com/hoodie/dateparser_benchmarks/tree/nightly_datetime#benchmark-of-each-implementation) to see what's possible
+
 ## Completeness test of each implementation
 
 ```bash
