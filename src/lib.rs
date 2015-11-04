@@ -33,14 +33,14 @@ mod datetime_regex_pure_bench{
     use super::test::Bencher;
     use datetime_regex_pure::PureRegexParser;
 
-    #[bench]
+    //#[bench]
     fn create_regex(b: &mut Bencher) {
         b.iter(||{
             PureRegexParser::new();
         });
     }
 
-    #[bench]
+    //#[bench]
     fn apply_regex(b: &mut Bencher) {
         let parser = PureRegexParser::new();
         b.iter(||{
@@ -73,7 +73,7 @@ mod nomdate_bench{
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
         b.iter(||{
-            datetime(super::DATESTRING.as_bytes());
+            datetime(super::DATESTRING);
         });
     }
 }
@@ -102,7 +102,7 @@ mod completeness{
         for date in tests.iter(){
             let parsed_chrono = date.parse::<DateTime<UTC>>();
             let parsed_datetime = LocalDateTime::from_str(date);
-            let parsed_nom = nomdatetime(date.as_bytes());
+            let parsed_nom = nomdatetime(date);
             println!("{}\n -> chrono:   {:?}\n -> datetime: {:?}\n -> nom:      {:?}\n", date, parsed_chrono, parsed_datetime, parsed_nom);
         }
     }

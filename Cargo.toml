@@ -8,5 +8,5 @@ chrono = "0.2"
 nom = "0.4"
 regex = "0.1"
 datetime = {git = "https://github.com/ogham/rust-datetime/"}
-iso8601 = { git = "https://github.com/hoodie/iso8601.git" }
+iso8601 = "0.1"
 #iso8601 = { git = "https://github.com/badboy/iso8601.git" }
