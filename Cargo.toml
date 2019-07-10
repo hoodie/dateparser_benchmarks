@@ -6,7 +6,7 @@ authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 [dependencies]
 chrono = "0.2"
 regex = "0.1"
-datetime = {git = "https://github.com/ogham/rust-datetime/"}
+datetime = "0.4"
 iso8601 = "0.1"
 dtparse = "1.0"
 #iso8601 = { git = "https://github.com/badboy/iso8601.git" }
