@@ -131,7 +131,7 @@ mod dtparse_bench{
     use super::test::Bencher;
 
     #[bench]
-    fn parse_dtparse(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut Bencher) {
         b.iter(||{
             dtparse::parse(super::DATESTRING);
         });

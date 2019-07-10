@@ -64,15 +64,15 @@ impl PureRegexParser {
     pub fn parse_iso_8601_date(&self, string: &str) -> Option<(u32, u32, u32)>
     {
         if let Some(caps) = self.ymd.captures(&string) {
-            Some((caps.at(1).unwrap().parse().unwrap(), // year
-                  caps.at(2).unwrap().parse().unwrap(), // month
-                  caps.at(3).unwrap().parse().unwrap(), // day
+            Some((caps.get(1).unwrap().as_str().parse().unwrap(), // year
+                  caps.get(2).unwrap().as_str().parse().unwrap(), // month
+                  caps.get(3).unwrap().as_str().parse().unwrap(), // day
                 ))
         }
         else if let Some(caps) = self.week.captures(&string) {
-            Some((caps.at(1).unwrap().parse().unwrap(), // year
-                 caps.at(2).unwrap().parse().unwrap(), // week
-                 caps.at(3).unwrap().parse().unwrap()  // weekday
+            Some((caps.get(1).unwrap().as_str().parse().unwrap(), // year
+                  caps.get(2).unwrap().as_str().parse().unwrap(), // week
+                  caps.get(3).unwrap().as_str().parse().unwrap()  // weekday
                 ))
         }
         else { None }
@@ -89,15 +89,15 @@ impl PureRegexParser {
     fn parse_iso_8601_tuple<'a>(&self, string: &'a str) -> Option<(i8,i8,i8,i32,i8,i8,&'a str)>
     {
         if let Some(caps) = self.exp.captures(&string) {
-            let tup = (caps.at(1).unwrap_or("00").parse::<i8>().unwrap(), // HH
-                       caps.at(2).unwrap_or("00").parse::<i8>().unwrap(), // MM
-                       caps.at(3).unwrap_or("00").parse::<i8>().unwrap(), // SS
-                       caps.at(4).unwrap_or("000").parse::<i32>().unwrap(), // MS
-                       caps.at(6).unwrap_or("+00").trim_start_matches('+').parse::<i8>().unwrap(), // ZH
-                       caps.at(7).unwrap_or("00").parse::<i8>().unwrap(), // ZM
-                       caps.at(5).unwrap_or("_"), // "Z"
+            let tup = (caps.get(1).map(|m|m.as_str()).unwrap_or("00").parse::<i8>().unwrap(), // HH
+                       caps.get(2).map(|m|m.as_str()).unwrap_or("00").parse::<i8>().unwrap(), // MM
+                       caps.get(3).map(|m|m.as_str()).unwrap_or("00").parse::<i8>().unwrap(), // SS
+                       caps.get(4).map(|m|m.as_str()).unwrap_or("000").parse::<i32>().unwrap(), // MS
+                       caps.get(6).map(|m|m.as_str()).unwrap_or("+00").trim_start_matches('+').parse::<i8>().unwrap(), // ZH
+                       caps.get(7).map(|m|m.as_str()).unwrap_or("00").parse::<i8>().unwrap(), // ZM
+                       caps.get(5).map(|m|m.as_str()).unwrap_or("_"), // "Z"
                       );
-            if tup.3 > 0 && caps.at(4).map(|ms| ms.len()).unwrap_or(0) % 3 != 0 {
+            if tup.3 > 0 && caps.get(4).map(|ms| ms.as_str().len()).unwrap_or(0) % 3 != 0 {
                 // println!("{}", tup.3);
                 return None
             }
