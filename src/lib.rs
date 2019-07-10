@@ -7,7 +7,6 @@ extern crate chrono;
 extern crate datetime;
 extern crate dtparse;
 extern crate iso8601;
-extern crate nom;
 extern crate regex;
 
 mod datetime_regex_pure;

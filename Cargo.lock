@@ -46,7 +46,6 @@ dependencies = [
  "datetime 0.4.7 (git+https://github.com/ogham/rust-datetime/)",
  "dtparse 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "iso8601 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "nom 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 0.1.80 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -118,11 +117,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "libc 0.2.59 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
-
-[[package]]
-name = "nom"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "nom"
@@ -342,7 +336,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum libc 0.2.59 (registry+https://github.com/rust-lang/crates.io-index)" = "3262021842bf00fe07dbd6cf34ff25c99d7a7ebef8deea84db72be3ea3bb0aff"
 "checksum locale 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "5fdbe492a9c0238da900a1165c42fc5067161ce292678a6fe80921f30fe307fd"
 "checksum memchr 0.1.11 (registry+https://github.com/rust-lang/crates.io-index)" = "d8b629fb514376c675b98c1421e80b151d3817ac42d7c667717d282761418d20"
-"checksum nom 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3d87d06599b957cdfde42fd0a271f3b60ef981016c4a47d6bc112365108b7e3e"
 "checksum nom 1.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "a5b8c256fd9471521bcb84c3cdba98921497f1a331cbc15b8030fc63b82050ce"
 "checksum num 0.1.42 (registry+https://github.com/rust-lang/crates.io-index)" = "4703ad64153382334aa8db57c637364c322d3372e097840c72000dabdcf6156e"
 "checksum num 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "cf4825417e1e1406b3782a8ce92f4d53f26ec055e3622e1881ca8e9f5f9e08db"
