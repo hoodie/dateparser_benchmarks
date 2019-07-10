@@ -29,7 +29,7 @@ mod chrono_bench{
 }
 
 #[cfg(test)]
-mod datetime_regex_pure_bench{
+mod regex_bench{
 
     use super::test::Bencher;
     use datetime_regex_pure::PureRegexParser;
@@ -41,8 +41,8 @@ mod datetime_regex_pure_bench{
         });
     }
 
-    //#[bench]
-    fn apply_regex(b: &mut Bencher) {
+    #[bench]
+    fn parse_iso8601(b: &mut Bencher) {
         let parser = PureRegexParser::new();
         b.iter(||{
             parser.parse_iso_8601(super::DATESTRING);
@@ -66,7 +66,7 @@ mod datetime_bench{
 }
 
 #[cfg(test)]
-mod nomdate_bench{
+mod iso8601_bench{
 
     use super::test::Bencher;
     use iso8601::datetime;
@@ -78,6 +78,7 @@ mod nomdate_bench{
         });
     }
 }
+
 
 #[cfg(test)]
 mod dtparse_bench{
