@@ -6,9 +6,10 @@ extern crate test;
 extern crate chrono02;
 extern crate chrono03;
 extern crate chrono04;
+extern crate iso8601_v01;
+extern crate iso8601_v03;
 extern crate datetime;
 extern crate dtparse;
-extern crate iso8601;
 extern crate regex;
 
 mod datetime_regex_pure;
@@ -95,10 +96,25 @@ mod datetime_bench{
 }
 
 #[cfg(test)]
-mod iso8601_bench{
+mod iso8601_v01_bench{
 
     use super::test::Bencher;
-    use iso8601::datetime;
+    use iso8601_v01::datetime;
+
+    #[bench]
+    fn parse_iso8601(b: &mut Bencher) {
+        b.iter(||{
+            datetime(super::DATESTRING);
+        });
+    }
+}
+
+
+#[cfg(test)]
+mod iso8601_v03_bench{
+
+    use super::test::Bencher;
+    use iso8601_v03::datetime;
 
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
@@ -128,7 +144,7 @@ mod completeness{
 
     use std::str::FromStr;
     use datetime::LocalDateTime;
-    use iso8601::datetime as nomdatetime;
+    use iso8601_v03::datetime as nomdatetime;
 
     static ALL_FORMATS: &'static [&'static str] = &[
         "2015-10-24T16:30:48+00:00",

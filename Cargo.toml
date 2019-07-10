@@ -7,8 +7,9 @@ authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 chrono02 = { version = "0.2", package = "chrono" }
 chrono03 = { version = "0.3", package = "chrono" }
 chrono04 = { version = "0.4", package = "chrono" }
+iso8601_v01 = { version = "0.1", package = "iso8601" }
+iso8601_v03 = { version = "0.3", package = "iso8601" }
 regex = "0.1"
 datetime = "0.4"
-iso8601 = "0.1"
 dtparse = "1.0"
 #iso8601 = { git = "https://github.com/badboy/iso8601.git" }
