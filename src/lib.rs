@@ -54,7 +54,7 @@ mod datetime_bench{
 
     use super::test::Bencher;
     use std::str::FromStr;
-    use datetime::local::*;
+    use datetime::*;
 
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
@@ -84,7 +84,7 @@ mod completeness{
 
     use chrono::*;
     use std::str::FromStr;
-    use datetime::local::LocalDateTime;
+    use datetime::LocalDateTime;
     use iso8601::datetime as nomdatetime;
 
     #[test]
