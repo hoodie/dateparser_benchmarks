@@ -4,7 +4,9 @@ version = "0.1.0"
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 
 [dependencies]
-chrono = "0.2"
+chrono02 = { version = "0.2", package = "chrono" }
+chrono03 = { version = "0.3", package = "chrono" }
+chrono04 = { version = "0.4", package = "chrono" }
 regex = "0.1"
 datetime = "0.4"
 iso8601 = "0.1"

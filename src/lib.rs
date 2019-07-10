@@ -3,7 +3,9 @@
 #![allow(dead_code)]
 extern crate test;
 
-extern crate chrono;
+extern crate chrono02;
+extern crate chrono03;
+extern crate chrono04;
 extern crate datetime;
 extern crate dtparse;
 extern crate iso8601;
@@ -14,15 +16,43 @@ mod datetime_regex_pure;
 static DATESTRING: &'static str = "2014-11-28T12:00:09Z";
 
 #[cfg(test)]
-mod chrono_bench{
+mod chrono02_bench {
 
     use super::test::Bencher;
-    use chrono::*;
+    use chrono02::*;
 
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
         b.iter(||{
             super::DATESTRING.parse::<DateTime<UTC>>()
+        });
+    }
+}
+
+#[cfg(test)]
+mod chrono03_bench {
+
+    use super::test::Bencher;
+    use chrono03::*;
+
+    #[bench]
+    fn parse_iso8601(b: &mut Bencher) {
+        b.iter(||{
+            super::DATESTRING.parse::<DateTime<UTC>>()
+        });
+    }
+}
+
+#[cfg(test)]
+mod chrono04_bench {
+
+    use super::test::Bencher;
+    use chrono04::*;
+
+    #[bench]
+    fn parse_iso8601(b: &mut Bencher) {
+        b.iter(||{
+            super::DATESTRING.parse::<DateTime<Utc>>()
         });
     }
 }
@@ -96,7 +126,6 @@ mod dtparse_bench{
 #[cfg(test)]
 mod completeness{
 
-    use chrono::*;
     use std::str::FromStr;
     use datetime::LocalDateTime;
     use iso8601::datetime as nomdatetime;
@@ -120,13 +149,13 @@ mod completeness{
     #[test]
     fn iso_week_date() {
         for date in ALL_FORMATS.iter(){
-            let parsed_by_chrono = date.parse::<DateTime<UTC>>();
+            let parsed_by_chrono02 = date.parse::<chrono02::DateTime<chrono02::UTC>>();
             let parsed_by_datetime = LocalDateTime::from_str(date);
             let parsed_by_nom = nomdatetime(date);
             let parsed_by_dtparse = dtparse::parse(date);
             println!("{}\n -> chrono:   {:?}\n -> datetime: {:?}\n -> nom:      {:?}\n -> dtparse:  {:?}\n",
             date,
-            parsed_by_chrono,
+            parsed_by_chrono02,
             parsed_by_datetime,
             parsed_by_nom,
             parsed_by_dtparse
@@ -135,7 +164,16 @@ mod completeness{
     }
 
     #[test]
-    fn minimal_chrono() { for date in MINIMAL_FORMATS.iter() { date.parse::<DateTime<UTC>>().unwrap(); } }
+    fn minimal_chrono02() {
+        use chrono02::{DateTime, UTC};
+        for date in MINIMAL_FORMATS.iter() { date.parse::<DateTime<UTC>>().unwrap(); }
+    }
+
+    #[test]
+    fn minimal_chrono04() {
+        use chrono04::{DateTime, Utc};
+        for date in MINIMAL_FORMATS.iter() { date.parse::<DateTime<Utc>>().unwrap(); }
+    }
 
     #[test]
     fn minimal_datetime() { for date in MINIMAL_FORMATS.iter() { LocalDateTime::from_str(date).unwrap(); } }
@@ -148,7 +186,16 @@ mod completeness{
 
 
     #[test]
-    fn all_chrono() { for date in ALL_FORMATS.iter() { date.parse::<DateTime<UTC>>().unwrap(); } }
+    fn all_chrono02() {
+        use chrono02::{DateTime, UTC};
+        for date in ALL_FORMATS.iter() { date.parse::<DateTime<UTC>>().unwrap(); }
+    }
+
+    #[test]
+    fn all_chrono04() {
+        use chrono04::{DateTime, Utc};
+        for date in ALL_FORMATS.iter() { date.parse::<DateTime<Utc>>().unwrap(); }
+    }
 
     #[test]
     fn all_datetime() { for date in ALL_FORMATS.iter() { LocalDateTime::from_str(date).unwrap(); } }
