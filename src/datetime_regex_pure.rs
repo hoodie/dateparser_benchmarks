@@ -93,7 +93,7 @@ impl PureRegexParser {
                        caps.at(2).unwrap_or("00").parse::<i8>().unwrap(), // MM
                        caps.at(3).unwrap_or("00").parse::<i8>().unwrap(), // SS
                        caps.at(4).unwrap_or("000").parse::<i32>().unwrap(), // MS
-                       caps.at(6).unwrap_or("+00").trim_left_matches('+').parse::<i8>().unwrap(), // ZH
+                       caps.at(6).unwrap_or("+00").trim_start_matches('+').parse::<i8>().unwrap(), // ZH
                        caps.at(7).unwrap_or("00").parse::<i8>().unwrap(), // ZM
                        caps.at(5).unwrap_or("_"), // "Z"
                       );
