@@ -1,16 +1,6 @@
 #![feature(test)]
 #![allow(unused_must_use)]
 #![allow(dead_code)]
-extern crate test;
-
-extern crate chrono02;
-extern crate chrono03;
-extern crate chrono04;
-extern crate iso8601_v01;
-extern crate iso8601_v03;
-extern crate datetime;
-extern crate dtparse;
-extern crate regex;
 
 mod datetime_regex_pure;
 
@@ -62,7 +52,7 @@ mod chrono04_bench {
 mod regex_bench{
 
     use super::test::Bencher;
-    use datetime_regex_pure::PureRegexParser;
+    use crate::datetime_regex_pure::PureRegexParser;
 
     //#[bench]
     fn create_regex(b: &mut Bencher) {
