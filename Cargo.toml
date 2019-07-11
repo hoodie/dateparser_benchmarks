@@ -1,5 +1,5 @@
 [package]
-name = "dateparser_benchmarks"
+name = "datetimeparser_benchmarks"
 version = "0.1.0"
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 edition = "2018"
@@ -13,4 +13,8 @@ iso8601_v03 = { version = "0.3", package = "iso8601" }
 regex = "1.1"
 datetime = "0.4"
 dtparse = "1.0"
-#iso8601 = { git = "https://github.com/badboy/iso8601.git" }
+criterion = "0.2"
+
+[[bench]]
+name = "datetime_parsers"
+harness = false

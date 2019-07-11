@@ -2,10 +2,11 @@
 #![allow(unused_must_use)]
 #![allow(dead_code)]
 
-mod datetime_regex_pure;
+pub mod datetime_regex_pure;
 
 static DATESTRING: &'static str = "2014-11-28T12:00:09Z";
 
+/*
 #[cfg(test)]
 mod chrono02_bench {
 
@@ -213,3 +214,5 @@ mod completeness{
     fn all_dtparse() { for date in ALL_FORMATS.iter() { dtparse::parse(date).unwrap(); } }
 
 }
+
+*/
