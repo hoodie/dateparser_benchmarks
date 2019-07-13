@@ -5,9 +5,9 @@ authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 edition = "2018"
 
 [dependencies]
-chrono02 = { version = "0.2", package = "chrono" }
-chrono03 = { version = "0.3", package = "chrono" }
-chrono04 = { version = "0.4", package = "chrono" }
+chrono_v02 = { version = "0.2", package = "chrono" }
+chrono_v03 = { version = "0.3", package = "chrono" }
+chrono_v04 = { version = "0.4", package = "chrono" }
 iso8601_v01 = { version = "0.1", package = "iso8601" }
 iso8601_v03 = { version = "0.3", package = "iso8601" }
 regex = "1.1"
