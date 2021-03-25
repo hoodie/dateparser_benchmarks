@@ -10,14 +10,14 @@
 ## Benches 
 
 ```bash
-test chrono02_bench::parse_iso8601    ... bench:         288 ns/iter (+/- 11)
-test chrono03_bench::parse_iso8601    ... bench:         613 ns/iter (+/- 31)
-test chrono04_bench::parse_iso8601    ... bench:         632 ns/iter (+/- 55)
-test datetime_bench::parse_iso8601    ... bench:         241 ns/iter (+/- 11)
-test dtparse_bench::parse_iso8601     ... bench:       3,057 ns/iter (+/- 276)
-test iso8601_v01_bench::parse_iso8601 ... bench:         211 ns/iter (+/- 9)
-test iso8601_v03_bench::parse_iso8601 ... bench:         183 ns/iter (+/- 34)
-test regex_bench::parse_iso8601       ... bench:         538 ns/iter (+/- 130)
-
-test result: ok. 0 passed; 0 failed; 11 ignored; 8 measured; 0 filtered out
+test chrono02_bench::parse_iso8601       ... bench:         229 ns/iter (+/- 31)
+test chrono03_bench::parse_iso8601       ... bench:         419 ns/iter (+/- 39)
+test chrono04_bench::parse_iso8601       ... bench:         426 ns/iter (+/- 37)
+test datetime_bench::parse_iso8601       ... bench:         166 ns/iter (+/- 37)
+test dtparse_bench::parse_iso8601        ... bench:       7,108 ns/iter (+/- 1,597)
+test iso8601_v01_bench::parse_iso8601    ... bench:         130 ns/iter (+/- 22)
+test iso8601_v03_bench::parse_iso8601    ... bench:         145 ns/iter (+/- 22)
+test iso8601_v04_bench::parse_iso8601    ... bench:         119 ns/iter (+/- 19)
+test iso8601_master_bench::parse_iso8601 ... bench:         142 ns/iter (+/- 31) // oops
+test regex_bench::parse_iso8601          ... bench:         616 ns/iter (+/- 147)
 ```
