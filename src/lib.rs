@@ -14,7 +14,7 @@ extern crate regex;
 
 mod datetime_regex_pure;
 
-static DATESTRING: &'static str = "2014-11-28T12:00:09Z";
+static DATESTRING: &str = "2014-11-28T12:00:09Z";
 
 #[cfg(test)]
 mod chrono02_bench {
@@ -137,7 +137,7 @@ mod completeness {
     use iso8601_v03::datetime as nomdatetime;
     use std::str::FromStr;
 
-    static ALL_FORMATS: &'static [&'static str] = &[
+    static ALL_FORMATS: &[&str] = &[
         "2015-10-24T16:30:48+00:00",
         "2015-10-24T16:30:48Z",
         "20151024T163048Z",
@@ -146,8 +146,7 @@ mod completeness {
         "2015-297T16:30:48Z",
     ];
 
-    static MINIMAL_FORMATS: &'static [&'static str] =
-        &["2015-10-24T16:30:48+00:00", "2015-10-24T16:30:48Z"];
+    static MINIMAL_FORMATS: &[&str] = &["2015-10-24T16:30:48+00:00", "2015-10-24T16:30:48Z"];
 
     #[test]
     fn iso_week_date() {
