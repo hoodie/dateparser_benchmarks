@@ -10,6 +10,7 @@ extern crate datetime;
 extern crate dtparse;
 extern crate iso8601_v01;
 extern crate iso8601_v03;
+extern crate iso8601_v04;
 extern crate regex;
 
 mod datetime_regex_pure;
@@ -108,6 +109,20 @@ mod iso8601_v03_bench {
 
     use super::test::Bencher;
     use iso8601_v03::datetime;
+
+    #[bench]
+    fn parse_iso8601(b: &mut Bencher) {
+        b.iter(|| {
+            datetime(super::DATESTRING);
+        });
+    }
+}
+
+#[cfg(test)]
+mod iso8601_v04_bench {
+
+    use super::test::Bencher;
+    use iso8601_v04::datetime;
 
     #[bench]
     fn parse_iso8601(b: &mut Bencher) {
