@@ -116,6 +116,19 @@ mod iso8601_v04_bench {
 }
 
 #[cfg(test)]
+mod iso8601_master_bench {
+
+    use iso8601_master::datetime;
+
+    #[bench]
+    fn parse_iso8601(b: &mut test::Bencher) {
+        b.iter(|| {
+            datetime(super::DATESTRING);
+        });
+    }
+}
+
+#[cfg(test)]
 mod dtparse_bench {
 
     #[bench]
