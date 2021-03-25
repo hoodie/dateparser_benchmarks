@@ -10,7 +10,6 @@ static DATESTRING: &str = "2014-11-28T12:00:09Z";
 
 #[cfg(test)]
 mod chrono02_bench {
-
     use chrono02::*;
 
     #[bench]
@@ -78,53 +77,33 @@ mod datetime_bench {
 
 #[cfg(test)]
 mod iso8601_v01_bench {
-
-    use iso8601_v01::datetime;
-
     #[bench]
     fn parse_iso8601(b: &mut test::Bencher) {
-        b.iter(|| {
-            datetime(super::DATESTRING);
-        });
+        b.iter(|| iso8601_v01::datetime(super::DATESTRING));
     }
 }
 
 #[cfg(test)]
 mod iso8601_v03_bench {
-
-    use iso8601_v03::datetime;
-
     #[bench]
     fn parse_iso8601(b: &mut test::Bencher) {
-        b.iter(|| {
-            datetime(super::DATESTRING);
-        });
+        b.iter(|| iso8601_v03::datetime(super::DATESTRING));
     }
 }
 
 #[cfg(test)]
 mod iso8601_v04_bench {
-
-    use iso8601_v04::datetime;
-
     #[bench]
     fn parse_iso8601(b: &mut test::Bencher) {
-        b.iter(|| {
-            datetime(super::DATESTRING);
-        });
+        b.iter(|| iso8601_v04::datetime(super::DATESTRING));
     }
 }
 
 #[cfg(test)]
 mod iso8601_master_bench {
-
-    use iso8601_master::datetime;
-
     #[bench]
     fn parse_iso8601(b: &mut test::Bencher) {
-        b.iter(|| {
-            datetime(super::DATESTRING);
-        });
+        b.iter(|| iso8601_master::datetime(super::DATESTRING));
     }
 }
 
