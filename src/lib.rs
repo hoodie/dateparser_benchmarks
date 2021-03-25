@@ -1,17 +1,8 @@
 #![feature(test)]
 #![allow(unused_must_use)]
 #![allow(dead_code)]
-extern crate test;
 
-extern crate chrono02;
-extern crate chrono03;
-extern crate chrono04;
-extern crate datetime;
-extern crate dtparse;
-extern crate iso8601_v01;
-extern crate iso8601_v03;
-extern crate iso8601_v04;
-extern crate regex;
+extern crate test;
 
 mod datetime_regex_pure;
 
@@ -20,11 +11,10 @@ static DATESTRING: &str = "2014-11-28T12:00:09Z";
 #[cfg(test)]
 mod chrono02_bench {
 
-    use super::test::Bencher;
     use chrono02::*;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| super::DATESTRING.parse::<DateTime<UTC>>());
     }
 }
@@ -32,11 +22,10 @@ mod chrono02_bench {
 #[cfg(test)]
 mod chrono03_bench {
 
-    use super::test::Bencher;
     use chrono03::*;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| super::DATESTRING.parse::<DateTime<UTC>>());
     }
 }
@@ -44,11 +33,10 @@ mod chrono03_bench {
 #[cfg(test)]
 mod chrono04_bench {
 
-    use super::test::Bencher;
     use chrono04::*;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| super::DATESTRING.parse::<DateTime<Utc>>());
     }
 }
@@ -56,18 +44,17 @@ mod chrono04_bench {
 #[cfg(test)]
 mod regex_bench {
 
-    use super::test::Bencher;
-    use datetime_regex_pure::PureRegexParser;
+    use crate::datetime_regex_pure::PureRegexParser;
 
     //#[bench]
-    fn create_regex(b: &mut Bencher) {
+    fn create_regex(b: &mut test::Bencher) {
         b.iter(|| {
             PureRegexParser::new();
         });
     }
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         let parser = PureRegexParser::new();
         b.iter(|| {
             parser.parse_iso_8601(super::DATESTRING);
@@ -78,12 +65,11 @@ mod regex_bench {
 #[cfg(test)]
 mod datetime_bench {
 
-    use super::test::Bencher;
     use datetime::*;
     use std::str::FromStr;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| {
             LocalDateTime::from_str(super::DATESTRING);
         });
@@ -93,11 +79,10 @@ mod datetime_bench {
 #[cfg(test)]
 mod iso8601_v01_bench {
 
-    use super::test::Bencher;
     use iso8601_v01::datetime;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| {
             datetime(super::DATESTRING);
         });
@@ -107,11 +92,10 @@ mod iso8601_v01_bench {
 #[cfg(test)]
 mod iso8601_v03_bench {
 
-    use super::test::Bencher;
     use iso8601_v03::datetime;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| {
             datetime(super::DATESTRING);
         });
@@ -121,11 +105,10 @@ mod iso8601_v03_bench {
 #[cfg(test)]
 mod iso8601_v04_bench {
 
-    use super::test::Bencher;
     use iso8601_v04::datetime;
 
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| {
             datetime(super::DATESTRING);
         });
@@ -135,10 +118,8 @@ mod iso8601_v04_bench {
 #[cfg(test)]
 mod dtparse_bench {
 
-    use super::test::Bencher;
-
     #[bench]
-    fn parse_iso8601(b: &mut Bencher) {
+    fn parse_iso8601(b: &mut test::Bencher) {
         b.iter(|| {
             dtparse::parse(super::DATESTRING);
         });

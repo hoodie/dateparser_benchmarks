@@ -2,6 +2,7 @@
 name = "dateparser_benchmarks"
 version = "0.1.0"
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
+edition = "2018"
 
 [dependencies]
 chrono02 = { version = "0.2", package = "chrono" }
