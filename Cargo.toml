@@ -8,10 +8,17 @@ edition = "2018"
 chrono02 = { version = "0.2", package = "chrono" }
 chrono03 = { version = "0.3", package = "chrono" }
 chrono04 = { version = "0.4", package = "chrono" }
+
 iso8601_v01 = { version = "0.1", package = "iso8601" }
 iso8601_v03 = { version = "0.3", package = "iso8601" }
 iso8601_v04 = { version = "0.4", package = "iso8601" }
+
 iso8601_master= { git = "https://github.com/badboy/iso8601", package = "iso8601" }
+
+iso8601_low = { git = "https://github.com/hoodie/iso8601", package = "iso8601", rev="606b017c4134577b754d1f946e75f83e10e46707" }
+iso8601_hi  = { git = "https://github.com/hoodie/iso8601", package = "iso8601", rev="c0ffeef05c77dfd97dd7e39373f1f0e31bf2b195" }
+iso8601_nom7= { git = "https://github.com/hoodie/iso8601", package = "iso8601", rev="f6b0ef78073bb85ffdeb8a9c10ce08b01ee656cd" }
+
 regex = "1.1"
 datetime = "0.4"
 dtparse = "1.0"

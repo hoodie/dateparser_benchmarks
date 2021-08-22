@@ -108,6 +108,30 @@ mod iso8601_master_bench {
 }
 
 #[cfg(test)]
+mod iso8601_low_level_parsers_bench {
+    #[bench]
+    fn parse_iso8601(b: &mut test::Bencher) {
+        b.iter(|| iso8601_low::datetime(super::DATESTRING));
+    }
+}
+
+#[cfg(test)]
+mod iso8601_hi_level_parsers_bench {
+    #[bench]
+    fn parse_iso8601(b: &mut test::Bencher) {
+        b.iter(|| iso8601_hi::datetime(super::DATESTRING));
+    }
+}
+
+#[cfg(test)]
+mod iso8601_nom7_parsers_bench {
+    #[bench]
+    fn parse_iso8601(b: &mut test::Bencher) {
+        b.iter(|| iso8601_nom7::datetime(super::DATESTRING));
+    }
+}
+
+#[cfg(test)]
 mod dtparse_bench {
 
     #[bench]

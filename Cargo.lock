@@ -79,7 +79,10 @@ dependencies = [
  "iso8601 0.1.1",
  "iso8601 0.3.0",
  "iso8601 0.4.0",
- "iso8601 0.4.1-alpha.0",
+ "iso8601 0.4.1-alpha.0 (git+https://github.com/hoodie/iso8601?rev=606b017c4134577b754d1f946e75f83e10e46707)",
+ "iso8601 0.4.1-alpha.0 (git+https://github.com/hoodie/iso8601?rev=c0ffeef05c77dfd97dd7e39373f1f0e31bf2b195)",
+ "iso8601 0.4.1-alpha.0 (git+https://github.com/hoodie/iso8601?rev=f6b0ef78073bb85ffdeb8a9c10ce08b01ee656cd)",
+ "iso8601 0.4.1-alpha.0 (git+https://github.com/badboy/iso8601)",
  "regex",
 ]
 
@@ -147,6 +150,30 @@ dependencies = [
 [[package]]
 name = "iso8601"
 version = "0.4.1-alpha.0"
+source = "git+https://github.com/hoodie/iso8601?rev=606b017c4134577b754d1f946e75f83e10e46707#606b017c4134577b754d1f946e75f83e10e46707"
+dependencies = [
+ "nom 5.1.2",
+]
+
+[[package]]
+name = "iso8601"
+version = "0.4.1-alpha.0"
+source = "git+https://github.com/hoodie/iso8601?rev=c0ffeef05c77dfd97dd7e39373f1f0e31bf2b195#c0ffeef05c77dfd97dd7e39373f1f0e31bf2b195"
+dependencies = [
+ "nom 5.1.2",
+]
+
+[[package]]
+name = "iso8601"
+version = "0.4.1-alpha.0"
+source = "git+https://github.com/hoodie/iso8601?rev=f6b0ef78073bb85ffdeb8a9c10ce08b01ee656cd#f6b0ef78073bb85ffdeb8a9c10ce08b01ee656cd"
+dependencies = [
+ "nom 7.0.0",
+]
+
+[[package]]
+name = "iso8601"
+version = "0.4.1-alpha.0"
 source = "git+https://github.com/badboy/iso8601#5f525ff8385431a8b0a14f0145ee7ca7eead1d48"
 dependencies = [
  "nom 6.1.2",
@@ -190,6 +217,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "88579771288728879b57485cc7d6b07d648c9f0141eb955f8ab7f9d45394468e"
 
 [[package]]
+name = "minimal-lexical"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6595bb28ed34f43c3fe088e48f6cfb2e033cab45f25a5384d5fdf564fbc8c4b2"
+
+[[package]]
 name = "nom"
 version = "1.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -224,6 +257,17 @@ dependencies = [
  "bitvec",
  "funty",
  "memchr",
+ "version_check 0.9.3",
+]
+
+[[package]]
+name = "nom"
+version = "7.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7ffd9d26838a953b4af82cbeb9f1592c6798916983959be223a7124e992742c1"
+dependencies = [
+ "memchr",
+ "minimal-lexical",
  "version_check 0.9.3",
 ]
 
